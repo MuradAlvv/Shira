@@ -13,4 +13,8 @@ public class UserService {
     public List<User> getAllUsers() {
         return userRepository.findAll();
     }
+
+    public List<UserResponseDto> filterUsersByEmail(String email) {
+        return userRepository.filterUsersByEmail(email);
+    }
 }

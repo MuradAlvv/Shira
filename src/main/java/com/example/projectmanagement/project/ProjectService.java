@@ -1,6 +1,7 @@
 package com.example.projectmanagement.project;
 
 import com.example.projectmanagement.exception.ForbiddenActionException;
+import com.example.projectmanagement.exception.NotFoundException;
 import com.example.projectmanagement.security.SecurityUtil;
 import com.example.projectmanagement.user.User;
 import com.example.projectmanagement.user.UserRepository;
@@ -46,7 +47,9 @@ public class ProjectService {
         if (Objects.nonNull(projectRequestDto.getUserEmails())) {
             Set<String> emails = projectRequestDto.getUserEmails();
             Set<User> users = emails.stream().
-                    map(email -> userRepository.findUserByEmail(email).orElseThrow()).collect(Collectors.toSet());
+                    map(email -> userRepository.findUserByEmail(email).
+                            orElseThrow(() -> new NotFoundException("project"))).
+                    collect(Collectors.toSet());
             project.setUsers(users);
         }
         if (Objects.isNull(project.getUsers())) {
@@ -59,7 +62,7 @@ public class ProjectService {
 
     public ProjectResponseDto getProjectById(Integer id) {
         checkIfLoggedUserInProject(id);
-        Project project = projectRepository.findById(id).orElseThrow();
+        Project project = projectRepository.findById(id).orElseThrow(() -> new NotFoundException("project"));
         return projectMapper.toResponseDto(project);
     }
 
