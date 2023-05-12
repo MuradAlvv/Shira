@@ -1,10 +1,8 @@
 package com.example.projectmanagement.security.auth;
 
-import com.example.projectmanagement.security.CustomUserDetails;
 import com.example.projectmanagement.user.User;
 import com.example.projectmanagement.user.UserRepository;
 import com.example.projectmanagement.user.UserRequestDto;
-import com.example.projectmanagement.user.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

@@ -6,9 +6,9 @@ import com.example.projectmanagement.user.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Component
@@ -32,9 +32,9 @@ public class ProjectMapper {
         project.setAuthor(securityUtil.getLoggedUser());
         project.setDescription(projectRequestDto.getDescription());
         if (Objects.nonNull(projectRequestDto.getUserEmails())) {
-            List<String> emails = projectRequestDto.getUserEmails();
-            List<User> users = emails.stream().
-                    map(email -> userRepository.findUserByEmail(email).orElseThrow()).collect(Collectors.toList());
+            Set<String> emails = projectRequestDto.getUserEmails();
+            Set<User> users = emails.stream().
+                    map(email -> userRepository.findUserByEmail(email).orElseThrow()).collect(Collectors.toSet());
             project.setUsers(users);
         }
         return project;

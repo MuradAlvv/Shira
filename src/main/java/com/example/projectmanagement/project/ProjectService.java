@@ -27,7 +27,7 @@ public class ProjectService {
         return projectMapper.toResponseDtoList(projects);
     }
 
-    public void createProject(ProjectRequestDto projectRequestDto) {
+    public void createProjectByLoggedUser(ProjectRequestDto projectRequestDto) {
         Project project = projectMapper.toEntity(projectRequestDto);
         User user = securityUtil.getLoggedUser();
         if (Objects.isNull(project.getUsers())) {
@@ -38,23 +38,33 @@ public class ProjectService {
     }
 
     public void updateProject(Integer projectId, ProjectRequestDto projectRequestDto) {
-        if (projectRepository.isUserInProject(securityUtil.getLoggedUserId(), projectId)) {
-            User user = securityUtil.getLoggedUser();
-            Project project = projectRepository.findById(projectId).orElseThrow();
-            project.setName(projectRequestDto.getName());
-            project.setDescription(projectRequestDto.getDescription());
-            if (Objects.nonNull(projectRequestDto.getUserEmails())) {
-                Set<String> emails = projectRequestDto.getUserEmails();
-                Set<User> users = emails.stream().
-                        map(email -> userRepository.findUserByEmail(email).orElseThrow()).collect(Collectors.toSet());
-                project.setUsers(users);
-            }
-            if (Objects.isNull(project.getUsers())) {
-                project.setUsers(new HashSet<>());
-            }
-            project.getUsers().add(user);
-            projectRepository.save(project);
-        } else {
+        checkIfLoggedUserInProject(projectId);
+        User user = securityUtil.getLoggedUser();
+        Project project = projectRepository.findById(projectId).orElseThrow();
+        project.setName(projectRequestDto.getName());
+        project.setDescription(projectRequestDto.getDescription());
+        if (Objects.nonNull(projectRequestDto.getUserEmails())) {
+            Set<String> emails = projectRequestDto.getUserEmails();
+            Set<User> users = emails.stream().
+                    map(email -> userRepository.findUserByEmail(email).orElseThrow()).collect(Collectors.toSet());
+            project.setUsers(users);
+        }
+        if (Objects.isNull(project.getUsers())) {
+            project.setUsers(new HashSet<>());
+        }
+        project.getUsers().add(user);
+        projectRepository.save(project);
+
+    }
+
+    public ProjectResponseDto getProjectById(Integer id) {
+        checkIfLoggedUserInProject(id);
+        Project project = projectRepository.findById(id).orElseThrow();
+        return projectMapper.toResponseDto(project);
+    }
+
+    private void checkIfLoggedUserInProject(Integer projectId) {
+        if (!projectRepository.isUserInProject(securityUtil.getLoggedUserId(), projectId)) {
             throw new ForbiddenActionException();
         }
     }

@@ -1,6 +1,5 @@
 package com.example.projectmanagement.project;
 
-import com.example.projectmanagement.security.SecurityUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,9 +23,14 @@ public class ProjectController {
         return projectService.getProjectsByLoggedUser();
     }
 
+    @GetMapping("/{id}")
+    public ProjectResponseDto getProjectById(@PathVariable Integer id){
+        return projectService.getProjectById(id);
+    }
+
     @PostMapping
     public void create(@RequestBody ProjectRequestDto projectRequestDto) {
-        projectService.createProject(projectRequestDto);
+        projectService.createProjectByLoggedUser(projectRequestDto);
     }
 
     @PutMapping("/{id}")
