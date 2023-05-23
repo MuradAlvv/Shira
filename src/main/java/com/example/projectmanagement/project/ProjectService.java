@@ -8,6 +8,8 @@ import com.example.projectmanagement.user.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
@@ -57,7 +59,6 @@ public class ProjectService {
         }
         project.getUsers().add(user);
         projectRepository.save(project);
-
     }
 
     public ProjectResponseDto getProjectById(Integer id) {
@@ -70,5 +71,9 @@ public class ProjectService {
         if (!projectRepository.isUserInProject(securityUtil.getLoggedUserId(), projectId)) {
             throw new ForbiddenActionException();
         }
+    }
+
+    public List<ProjectResponseDto> getAllProjects(){
+        return projectMapper.toResponseDtoList(projectRepository.findAll());
     }
 }

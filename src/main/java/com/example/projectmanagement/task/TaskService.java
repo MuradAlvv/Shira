@@ -12,7 +12,7 @@ public class TaskService {
     private final SecurityUtil securityUtil;
     private final ProjectRepository projectRepository;
 
-    public void createTask(TaskRequestDto taskRequestDto) {
+    public void createTaskByLoggedUser(TaskRequestDto taskRequestDto) {
         Task task = new Task();
         task.setAuthor(securityUtil.getLoggedUser());
         task.setStatus(TaskStatus.ToDo);

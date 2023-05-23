@@ -15,6 +15,6 @@ public class TaskController {
 
     @PostMapping
     public void create(@RequestBody TaskRequestDto taskRequestDto) {
-        taskService.createTask(taskRequestDto);
+        taskService.createTaskByLoggedUser(taskRequestDto);
     }
 }

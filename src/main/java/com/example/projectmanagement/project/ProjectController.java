@@ -18,13 +18,18 @@ public class ProjectController {
 
     private final ProjectService projectService;
 
+    @GetMapping("/all")
+    public List<ProjectResponseDto> getAllProjects() {
+        return projectService.getAllProjects();
+    }
+
     @GetMapping
     public List<ProjectResponseDto> getUserProjects() {
         return projectService.getProjectsByLoggedUser();
     }
 
     @GetMapping("/{id}")
-    public ProjectResponseDto getProjectById(@PathVariable Integer id){
+    public ProjectResponseDto getProjectById(@PathVariable Integer id) {
         return projectService.getProjectById(id);
     }
 
