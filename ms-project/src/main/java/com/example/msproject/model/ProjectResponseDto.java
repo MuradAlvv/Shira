@@ -1,4 +1,4 @@
-package com.example.msproject.dto;
+package com.example.msproject.model;
 
 import lombok.Data;
 

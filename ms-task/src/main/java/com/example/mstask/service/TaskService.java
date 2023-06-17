@@ -1,6 +1,6 @@
 package com.example.mstask.service;
 
-import com.example.mstask.dto.TaskRequestDto;
+import com.example.mstask.model.TaskRequestDto;
 import com.example.mstask.entity.Task;
 import com.example.mstask.exception.NotFoundException;
 import com.example.mstask.repository.TaskRepository;

@@ -1,6 +1,8 @@
-package com.example.msauth.config;
+package com.example.msauth;
 
+import com.example.msauth.config.CustomUserDetails;
 import com.example.msauth.entity.User;
+import com.example.msauth.exception.NotFoundException;
 import com.example.msauth.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -14,12 +16,18 @@ public class SecurityUtil {
 
     public User getLoggedUser() {
         CustomUserDetails customUserDetails = getUserDetails();
-        return userRepository.findUserByEmail(customUserDetails.getUsername()).orElseThrow();
+        return userRepository.findUserByEmail(customUserDetails.getUsername()).
+                orElseThrow(() -> new NotFoundException("user"));
     }
 
     private CustomUserDetails getUserDetails() {
-        return (CustomUserDetails) SecurityContextHolder.getContext()
+        var customUserDetails = SecurityContextHolder.getContext()
                 .getAuthentication().getPrincipal();
+        if (customUserDetails instanceof CustomUserDetails) {
+            return (CustomUserDetails) customUserDetails;
+        } else {
+            throw new NotFoundException(" credentials ");
+        }
     }
 
     public Long getLoggedUserId() {

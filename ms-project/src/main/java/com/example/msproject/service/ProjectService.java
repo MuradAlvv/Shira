@@ -3,8 +3,8 @@ package com.example.msproject.service;
 import com.example.msproject.entity.Project;
 import com.example.msproject.mapper.ProjectMapper;
 import com.example.msproject.repository.ProjectRepository;
-import com.example.msproject.dto.ProjectRequestDto;
-import com.example.msproject.dto.ProjectResponseDto;
+import com.example.msproject.model.ProjectRequestDto;
+import com.example.msproject.model.ProjectResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

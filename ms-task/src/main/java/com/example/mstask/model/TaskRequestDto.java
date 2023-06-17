@@ -1,6 +1,5 @@
-package com.example.mstask.dto;
+package com.example.mstask.model;
 
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 

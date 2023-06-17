@@ -1,7 +1,7 @@
 package com.example.msproject.mapper;
 
-import com.example.msproject.dto.ProjectRequestDto;
-import com.example.msproject.dto.ProjectResponseDto;
+import com.example.msproject.model.ProjectRequestDto;
+import com.example.msproject.model.ProjectResponseDto;
 import com.example.msproject.entity.Project;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -9,7 +9,6 @@ import org.springframework.stereotype.Component;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 @Component

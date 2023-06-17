@@ -1,4 +1,4 @@
-package com.example.msauth.dto;
+package com.example.msauth.model;
 
 import lombok.Data;
 

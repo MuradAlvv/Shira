@@ -1,6 +1,6 @@
 package com.example.mstask.controller;
 
-import com.example.mstask.dto.TaskRequestDto;
+import com.example.mstask.model.TaskRequestDto;
 import com.example.mstask.service.TaskService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PathVariable;
