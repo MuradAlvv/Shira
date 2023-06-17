@@ -1,7 +1,7 @@
 package com.example.msauth.config;
 
-import com.example.projectmanagement.user.User;
-import com.example.projectmanagement.user.UserRepository;
+import com.example.msauth.entity.User;
+import com.example.msauth.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
