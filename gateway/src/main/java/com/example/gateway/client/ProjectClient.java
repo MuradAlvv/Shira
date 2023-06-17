@@ -5,7 +5,7 @@ import com.example.gateway.model.project.ProjectRequestDto;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PostMapping;
 
-@FeignClient(name = "ms-project", url = "http://localhost:8082/",configuration = FeignConfig.class)
+@FeignClient(name = "ms-project", url = "${client.ms-project.url}", configuration = FeignConfig.class)
 public interface ProjectClient {
 
     @PostMapping("api/projects")

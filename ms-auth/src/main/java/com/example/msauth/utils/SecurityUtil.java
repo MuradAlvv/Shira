@@ -1,4 +1,4 @@
-package com.example.msauth;
+package com.example.msauth.utils;
 
 import com.example.msauth.config.CustomUserDetails;
 import com.example.msauth.entity.User;

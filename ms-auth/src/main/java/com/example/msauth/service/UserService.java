@@ -1,6 +1,6 @@
 package com.example.msauth.service;
 
-import com.example.msauth.SecurityUtil;
+import com.example.msauth.utils.SecurityUtil;
 import com.example.msauth.model.UserRequestDto;
 import com.example.msauth.entity.User;
 import com.example.msauth.repository.UserRepository;

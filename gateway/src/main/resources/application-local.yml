@@ -1,0 +1,8 @@
+server:
+  port: 8080
+
+client:
+  ms-project:
+    url: "http://localhost:8082/"
+  ms-user:
+    url: "http://localhost:8081/"

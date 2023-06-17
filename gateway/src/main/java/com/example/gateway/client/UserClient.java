@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
 
-@FeignClient(name = "ms-auth", url = "http://localhost:8081/", configuration = FeignConfig.class)
+@FeignClient(name = "ms-auth", url = "${client.ms-user.url}", configuration = FeignConfig.class)
 public interface UserClient {
 
     @PostMapping("/api/users/register")

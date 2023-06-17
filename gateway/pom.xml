@@ -13,6 +13,7 @@
     <version>0.0.1-SNAPSHOT</version>
     <name>gateway</name>
     <description>gateway</description>
+    <packaging>jar</packaging>
     <properties>
         <java.version>17</java.version>
         <spring-cloud.version>2021.0.7</spring-cloud.version>
@@ -51,6 +52,7 @@
     </dependencyManagement>
 
     <build>
+        <finalName>gateway</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>

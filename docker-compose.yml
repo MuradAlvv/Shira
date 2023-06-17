@@ -1,0 +1,52 @@
+version: '3.9'
+services:
+
+  postgres:
+    container_name: postgres
+    restart: on-failure
+    build:
+      context: ./
+      dockerfile: db/Dockerfile
+    image: postgres:latest
+    ports:
+      - '5432:5432'
+    environment:
+      - ALLOW_ANONYMOUS_LOGIN=yes
+
+  gateway:
+    container_name: gateway
+    build:
+      context: ./
+      dockerfile: gateway/Dockerfile
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+    image: gateway:latest
+    ports:
+      - '8080:8080'
+
+
+  ms-auth:
+    container_name: ms-auth
+    build:
+      context: ./
+      dockerfile: ms-auth/Dockerfile
+    image: ms-auth:latest
+    ports:
+      - '8080'
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+    depends_on:
+      - postgres
+
+  ms-project:
+    container_name: ms-project
+    build:
+      context: ./
+      dockerfile: ms-project/Dockerfile
+    image: ms-project:latest
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+    ports:
+      - '8080'
+    depends_on:
+      - postgres

@@ -1,0 +1,8 @@
+server:
+  port: 8080
+
+client:
+  ms-project:
+    url: "http://ms-project:8080/"
+  ms-user:
+    url: "http://ms-auth:8080/"
