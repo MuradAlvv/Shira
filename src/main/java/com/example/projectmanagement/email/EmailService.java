@@ -15,7 +15,6 @@ import com.google.api.services.gmail.Gmail;
 import com.google.api.services.gmail.model.Message;
 import lombok.SneakyThrows;
 import org.apache.commons.codec.binary.Base64;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import javax.mail.Session;
