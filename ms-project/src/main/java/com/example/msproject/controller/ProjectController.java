@@ -5,7 +5,9 @@ import com.example.msproject.model.ProjectResponseDto;
 import com.example.msproject.service.ProjectService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,21 +23,16 @@ public class ProjectController {
 
     private final ProjectService projectService;
 
-    @GetMapping("/all")
-    public List<ProjectResponseDto> getAllProjects() {
-        return projectService.getAllProjects();
+    @GetMapping("/user/{userId}")
+    public List<ProjectResponseDto> getAllByUserId(@PathVariable Long userId) {
+        return projectService.getProjectsByUserId(userId);
     }
 
-    //    @GetMapping
-//    public List<ProjectResponseDto> getUserProjects() {
-//        return projectService.getProjectsByLoggedUser();
-//    }
-//
-//    @GetMapping("/{id}")
-//    public ProjectResponseDto getProjectById(@PathVariable Integer id) {
-//        return projectService.getProjectById(id);
-//    }
-//
+    @GetMapping("/{id}")
+    public ProjectResponseDto getById(@PathVariable Integer id, @CookieValue("JSESSIONID") String sessionId) {
+        return projectService.getProjectById(id, sessionId);
+    }
+
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public void create(@RequestBody ProjectRequestDto projectRequestDto) {

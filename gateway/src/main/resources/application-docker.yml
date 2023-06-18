@@ -4,5 +4,5 @@ server:
 client:
   ms-project:
     url: "http://ms-project:8080/"
-  ms-user:
+  ms-auth:
     url: "http://ms-auth:8080/"

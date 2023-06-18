@@ -1,5 +1,6 @@
 package com.example.msauth.controller;
 
+import com.example.msauth.model.SessionResponseDto;
 import com.example.msauth.model.UserRequestDto;
 import com.example.msauth.model.UserResponseDto;
 import com.example.msauth.service.UserService;
@@ -29,7 +30,7 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public UserResponseDto login(@RequestBody UserRequestDto userRequestDto) {
+    public SessionResponseDto login(@RequestBody UserRequestDto userRequestDto) {
         return userService.login(userRequestDto);
     }
 

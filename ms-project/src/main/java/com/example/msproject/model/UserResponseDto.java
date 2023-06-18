@@ -1,4 +1,4 @@
-package com.example.gateway.model.user;
+package com.example.msproject.model;
 
 import lombok.Getter;
 import lombok.Setter;

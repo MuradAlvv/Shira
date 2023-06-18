@@ -15,9 +15,6 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class ProjectMapper {
 
-//    private final SecurityUtil securityUtil;
-//    private final UserRepository userRepository;
-
     public ProjectResponseDto toResponseDto(Project project) {
         ProjectResponseDto projectResponseDto = new ProjectResponseDto();
         projectResponseDto.setId(project.getId());

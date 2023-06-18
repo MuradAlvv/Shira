@@ -13,10 +13,4 @@ public class UserResponseDto {
 
     private Long id;
     private String email;
-    private String sessionId;
-
-    public UserResponseDto(Long id, String email) {
-        this.id = id;
-        this.email = email;
-    }
 }

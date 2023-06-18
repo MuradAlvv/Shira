@@ -1,5 +1,6 @@
 package com.example.msauth.service;
 
+import com.example.msauth.model.SessionResponseDto;
 import com.example.msauth.utils.SecurityUtil;
 import com.example.msauth.model.UserRequestDto;
 import com.example.msauth.entity.User;
@@ -32,18 +33,13 @@ public class UserService {
         //TODO: add email validation
     }
 
-    public UserResponseDto login(UserRequestDto userRequestDto) {
+    public SessionResponseDto login(UserRequestDto userRequestDto) {
         UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(userRequestDto.getEmail(),
                 userRequestDto.getPassword());
         Authentication authentication = authenticationManager.authenticate(token);
         SecurityContextHolder.getContext().setAuthentication(authentication);
-
-        User user = userRepository.findUserByEmail(userRequestDto.getEmail()).orElseThrow();
-
         String sessionID = RequestContextHolder.currentRequestAttributes().getSessionId();
-        var response = new UserResponseDto();
-        response.setEmail(user.getEmail());
-        response.setId(user.getId());
+        var response = new SessionResponseDto();
         response.setSessionId(sessionID);
         return response;
     }

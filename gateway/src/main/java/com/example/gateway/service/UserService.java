@@ -2,7 +2,6 @@ package com.example.gateway.service;
 
 import com.example.gateway.client.UserClient;
 import com.example.gateway.model.user.UserRequestDto;
-import com.example.gateway.model.user.UserResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -18,12 +17,11 @@ public class UserService {
         userClient.register(userRequestDto);
     }
 
-    public UserResponseDto login(UserRequestDto userRequestDto, HttpServletResponse response) {
-        var userResponseDto = userClient.login(userRequestDto);
-        Cookie session = new Cookie("JSESSIONID", userResponseDto.getSessionId());
+    public void login(UserRequestDto userRequestDto, HttpServletResponse response) {
+        var sessionResponseDto = userClient.login(userRequestDto);
+        Cookie session = new Cookie("JSESSIONID", sessionResponseDto.getSessionId());
         session.setPath("/");
-        session.setMaxAge(4000);
+        session.setMaxAge(3600);
         response.addCookie(session);
-        return userResponseDto;
     }
 }
