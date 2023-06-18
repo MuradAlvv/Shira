@@ -28,7 +28,7 @@ import java.util.Properties;
 import java.util.Set;
 
 @Service
-public class EmailService {
+public class EmailService {  //TODO: add Kafka listener for email verification messages
     private String gmail = "test.java.development.mail@gmail.com";
 
     @SneakyThrows

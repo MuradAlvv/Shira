@@ -31,6 +31,7 @@ public class ProjectService {
     public void createProject(ProjectRequestDto projectRequestDto) {
         Project project = projectMapper.toEntity(projectRequestDto);
         projectRepository.save(project);
+        //TODO: send message to Kafka for notification service (notify users added to project)
     }
 
     //    public void updateProject(Integer projectId, ProjectRequestDto projectRequestDto) {

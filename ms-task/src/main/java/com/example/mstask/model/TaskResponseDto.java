@@ -3,6 +3,8 @@ package com.example.mstask.model;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
+
 @Getter
 @Setter
 public class TaskResponseDto {
@@ -11,4 +13,6 @@ public class TaskResponseDto {
     private Integer projectId;
     private Long assignedUserId;
     private Long authorId;
+    private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
 }

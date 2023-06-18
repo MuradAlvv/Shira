@@ -66,3 +66,17 @@ services:
     depends_on:
       postgres:
         condition: service_started
+
+  ms-notification:
+    container_name: ms-notification
+    build:
+      context: ./
+      dockerfile: ms-notification/Dockerfile
+    image: ms-notification:latest
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+    ports:
+      - '8080'
+    depends_on:
+      postgres:
+        condition: service_started

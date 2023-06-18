@@ -10,4 +10,5 @@ public class TaskRequestDto {
     private Integer projectId;
     private String title;
     private String description;
+    private Long assignedUserId;
 }

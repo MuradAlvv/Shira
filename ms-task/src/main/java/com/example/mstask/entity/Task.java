@@ -12,7 +12,6 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import java.io.File;
 import java.time.LocalDateTime;
 
 @Entity
@@ -25,7 +24,6 @@ public class Task {
     private Integer id;
     private String title;
     private String description;
-    private File attachment;
     @Enumerated(EnumType.STRING)
     private TaskStatus status;
     private Long assignedUserId;

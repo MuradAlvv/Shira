@@ -23,14 +23,16 @@ public class TaskService {
         task.setTitle(taskRequestDto.getTitle());
         task.setDescription(taskRequestDto.getDescription());
         task.setProjectId(taskRequestDto.getProjectId());
+        task.setAssignedUserId(taskRequestDto.getAssignedUserId());
         taskRepository.save(task);
+        //TODO: send message to kafka to notification service for assigned user
     }
 
     public void changeTaskStatus(Integer taskId) {
         Task task = taskRepository.findById(taskId).
                 orElseThrow(() -> new NotFoundException("task"));
-        TaskStatus currentStatus = task.getStatus();
-        task.setStatus(currentStatus.getNextStatus());
+        TaskStatus status = task.getStatus();
+        task.setStatus(status.getNextStatus());
         taskRepository.save(task);
     }
 
@@ -46,6 +48,8 @@ public class TaskService {
             dto.setDescription(task.getDescription());
             dto.setAssignedUserId(task.getAssignedUserId());
             dto.setAuthorId(task.getAuthorId());
+            dto.setCreatedAt(task.getCreatedAt());
+            dto.setUpdatedAt(task.getUpdatedAt());
             return dto;
         }).toList();
     }

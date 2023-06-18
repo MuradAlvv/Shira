@@ -31,6 +31,7 @@ public class UserService {
         user.setPassword(passwordEncoder.encode(userRequestDto.getPassword()));
         userRepository.save(user);
         //TODO: add email validation
+        //TODO: send email verification message to Kafka
     }
 
     public SessionResponseDto login(UserRequestDto userRequestDto) {
