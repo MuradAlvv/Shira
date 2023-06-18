@@ -6,3 +6,5 @@ client:
     url: "http://localhost:8082/"
   ms-auth:
     url: "http://localhost:8081/"
+  ms-task:
+    url: "http://localhost:8083/"

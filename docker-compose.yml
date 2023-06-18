@@ -50,3 +50,16 @@ services:
       - '8080'
     depends_on:
       - postgres
+
+  ms-task:
+    container_name: ms-task
+    build:
+      context: ./
+      dockerfile: ms-task/Dockerfile
+    image: ms-task:latest
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+    ports:
+      - '8080'
+    depends_on:
+      - postgres

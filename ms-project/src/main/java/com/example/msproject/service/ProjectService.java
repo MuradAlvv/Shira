@@ -22,6 +22,9 @@ public class ProjectService {
 
     public List<ProjectResponseDto> getProjectsByUserId(Long userId) {
         List<Project> projects = projectRepository.getProjectsByUserId(userId);
+        if (projects.isEmpty()) {
+            throw new NotFoundException("project");
+        }
         return projectMapper.toResponseDtoList(projects);
     }
 

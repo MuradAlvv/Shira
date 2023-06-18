@@ -30,7 +30,7 @@ public class Task {
     private TaskStatus status;
     private Long assignedUserId;
     private Long authorId;
-    private Long projectId;
+    private Integer projectId;
     @CreationTimestamp
     private LocalDateTime createdAt;
     @UpdateTimestamp

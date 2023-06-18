@@ -1,4 +1,4 @@
-package com.example.mstask.model;
+package com.example.gateway.model.task;
 
 import lombok.Getter;
 import lombok.Setter;
