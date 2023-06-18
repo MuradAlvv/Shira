@@ -36,7 +36,8 @@ services:
     environment:
       SPRING_PROFILES_ACTIVE: docker
     depends_on:
-      - postgres
+      postgres:
+        condition: service_started
 
   ms-project:
     container_name: ms-project
@@ -49,7 +50,8 @@ services:
     ports:
       - '8080'
     depends_on:
-      - postgres
+      postgres:
+        condition: service_started
 
   ms-task:
     container_name: ms-task
@@ -62,4 +64,5 @@ services:
     ports:
       - '8080'
     depends_on:
-      - postgres
+      postgres:
+        condition: service_started
