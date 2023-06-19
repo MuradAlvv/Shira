@@ -1,6 +1,6 @@
 FROM openjdk:17-jdk-slim
 
-COPY ms-task/target/notification.jar notification.jar
+COPY ms-notification/target/notification.jar notification.jar
 
 EXPOSE 8080
 

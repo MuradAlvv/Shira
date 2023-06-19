@@ -5,6 +5,8 @@ spring:
     url: jdbc:postgresql://postgres:5432/project
     username: postgres
     password: 1234
+  kafka:
+    bootstrap-servers: kafka:9092
 
   jpa:
     hibernate:
@@ -15,3 +17,4 @@ spring:
 client:
   ms-auth:
     url: "http://ms-auth:8080/"
+

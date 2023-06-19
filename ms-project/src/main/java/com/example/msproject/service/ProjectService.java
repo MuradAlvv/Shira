@@ -1,14 +1,17 @@
 package com.example.msproject.service;
 
+import com.example.msproject.config.KafkaTopics;
 import com.example.msproject.entity.Project;
 import com.example.msproject.exception.ForbiddenActionException;
 import com.example.msproject.exception.NotFoundException;
 import com.example.msproject.mapper.ProjectMapper;
+import com.example.msproject.model.NotificationRequestDto;
 import com.example.msproject.repository.ProjectRepository;
 import com.example.msproject.model.ProjectRequestDto;
 import com.example.msproject.model.ProjectResponseDto;
 import com.example.msproject.utils.SecurityUtil;
 import lombok.RequiredArgsConstructor;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,19 +22,22 @@ public class ProjectService {
     private final ProjectRepository projectRepository;
     private final ProjectMapper projectMapper;
     private final SecurityUtil securityUtil;
+    private final KafkaTemplate<String, NotificationRequestDto> kafkaTemplate;
 
     public List<ProjectResponseDto> getProjectsByUserId(Long userId) {
         List<Project> projects = projectRepository.getProjectsByUserId(userId);
-        if (projects.isEmpty()) {
-            throw new NotFoundException("project");
-        }
         return projectMapper.toResponseDtoList(projects);
     }
 
     public void createProject(ProjectRequestDto projectRequestDto) {
         Project project = projectMapper.toEntity(projectRequestDto);
         projectRepository.save(project);
-        //TODO: send message to Kafka for notification service (notify users added to project)
+
+        NotificationRequestDto notificationRequestDto = new NotificationRequestDto();
+        notificationRequestDto.setContent("You have been added to project " + project.getName());
+        notificationRequestDto.setTitle("New project!");
+        notificationRequestDto.setUsersIds(project.getUserIds());
+        kafkaTemplate.send(KafkaTopics.NOTIFICATION_TOPIC, notificationRequestDto);
     }
 
     //    public void updateProject(Integer projectId, ProjectRequestDto projectRequestDto) {

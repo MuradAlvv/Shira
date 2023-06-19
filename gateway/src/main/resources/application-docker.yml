@@ -1,3 +1,7 @@
+spring:
+  kafka:
+    bootstrap-servers: kafka:9092
+
 server:
   port: 8080
 
@@ -8,3 +12,4 @@ client:
     url: "http://ms-auth:8080/"
   ms-task:
     url: "http://ms-task:8080/"
+

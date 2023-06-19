@@ -25,7 +25,7 @@ public class TaskService {
         task.setProjectId(taskRequestDto.getProjectId());
         task.setAssignedUserId(taskRequestDto.getAssignedUserId());
         taskRepository.save(task);
-        //TODO: send message to kafka to notification service for assigned user
+        //TODO: send message to kafka for notification service
     }
 
     public void changeTaskStatus(Integer taskId) {
@@ -34,6 +34,8 @@ public class TaskService {
         TaskStatus status = task.getStatus();
         task.setStatus(status.getNextStatus());
         taskRepository.save(task);
+        //TODO: send message to kafka for notification service
+
     }
 
     public List<TaskResponseDto> getTasksByProjectId(Integer projectId) {

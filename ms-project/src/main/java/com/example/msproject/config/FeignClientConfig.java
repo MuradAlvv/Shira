@@ -5,5 +5,5 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 @EnableFeignClients(basePackages = "com.example.msproject.client")
-public class FeignConfig {
+public class FeignClientConfig {
 }
