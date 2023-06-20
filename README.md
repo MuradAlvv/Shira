@@ -18,6 +18,7 @@ This backend application has been developed as a demonstration of the microservi
 * Apache Kafka
 * WebSocket
 * PostgreSQL
+* Gmail API(OAuth2)
 * Docker
 
 ## Run
