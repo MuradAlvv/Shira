@@ -28,3 +28,23 @@ Run the following command from the root folder
 ```bash
 docker-compose up --build 
 ```
+
+## WebSocket client
+The following script can be used to subscribe to the notifications topic
+
+```
+const socket = new SockJS('http://localhost:8080/notifications');
+const stompClient = Stomp.over(socket);
+
+stompClient.connect({}, function (frame) {
+    console.log('WebSocket connection established.');
+
+    // Subscribe to a topic
+    stompClient.subscribe('/topic/notifications', function (message) {
+        const body = message.body;
+        console.log('Received message:', body);
+    });
+}, function (error) {
+    console.error('WebSocket connection error:', error);
+});
+```
